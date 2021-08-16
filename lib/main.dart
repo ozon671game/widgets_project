@@ -22,7 +22,11 @@ class MyApp extends StatelessWidget {
 class Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return CupertinoPageScaffold(
+      navigationBar: const CupertinoNavigationBar(
+        backgroundColor: Colors.grey,
+        middle:  Text('Olala'),
+      ),
         child: GridView.count(
       primary: false,
       padding: const EdgeInsets.all(20),
