@@ -223,20 +223,93 @@ class AccountTab extends StatelessWidget {
   }
 }
 
-class AddPhotoTab extends StatelessWidget {
+class AddPhotoTab extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => AddPhotoTabState();
+}
+class AddPhotoTabState extends State<AddPhotoTab> {
+
+  List<Color> list_c = [Colors.red,Colors.green];
+
+  String str = "";
+
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('AddPhotoTab'),
+    return Column(
+      key: UniqueKey(),
+      children: [
+        Container(
+          padding: EdgeInsets.all(50),
+          child: CupertinoButton(
+            color: CupertinoColors.activeOrange,
+            onPressed: (){
+              setState(() {
+                list_c = list_c.reversed.toList();
+
+              });
+            },
+            child: Text('BUTTOOOOOON'),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.all(50),
+          color: list_c[0],
+          child: Text('1'),
+        ),
+        Container(
+          padding: EdgeInsets.all(50),
+          color: list_c[1],
+          child: Text('2'),
+        )
+      ],
     );
   }
+
+  void func(){
+
+    build;
+  }
+
 }
 
-class SettingTab extends StatelessWidget {
+
+class SettingTab extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Settings Tab'),
+  State<StatefulWidget> createState() => _SettingTabState();
+}
+
+class _SettingTabState extends State<SettingTab> {
+
+  void displayDialog() {
+    showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) =>
+      CupertinoAlertDialog(
+        title: Text("Alert"),
+        content: Text("My alert message"),
+        actions: [
+          CupertinoDialogAction(
+              isDefaultAction: true, child: Text("Close"),
+              onPressed: (){Navigator.of(context).pop();},
+          ),
+        ],
+      ),
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: CupertinoButton(child: Container(
+          color: Colors.grey,
+          child: Text('tap'),
+        ), onPressed: (){
+
+            displayDialog();
+            print('1');
+
+          })
+    );
+  }
+
 }
