@@ -23,49 +23,65 @@ class Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        backgroundColor: Colors.grey,
-        middle:  Text('Olala'),
-      ),
+        navigationBar: const CupertinoNavigationBar(
+          backgroundColor: CupertinoColors.systemGrey,
+          middle: Text('Olala'),
+        ),
         child: GridView.count(
-      primary: false,
-      padding: const EdgeInsets.all(20),
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 10,
-      crossAxisCount: 2,
-      children: <Widget>[
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("He'd have you all unravel at the"),
-          color: Colors.teal[100],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Heed not the rabble'),
-          color: Colors.teal[200],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Sound of screams but the'),
-          color: Colors.teal[300],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Who scream'),
-          color: Colors.teal[400],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution is coming...'),
-          color: Colors.teal[500],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
-        ),
-      ],
-    ));
+          primary: false,
+          padding: const EdgeInsets.all(20),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          crossAxisCount: 2,
+          children: <Widget>[
+            CupertinoContextMenu(
+              actions: <Widget>[
+                CupertinoContextMenuAction(
+                  child: const Text('Action one'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                CupertinoContextMenuAction(
+                  child: const Text('Action two'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                child: const Text("He'd have you all unravel at the"),
+                color: Colors.teal[100],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              child: const Text('Heed not the rabble'),
+              color: Colors.teal[200],
+            ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              child: const Text('Sound of screams but the'),
+              color: Colors.teal[300],
+            ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              child: const Text('Who scream'),
+              color: Colors.teal[400],
+            ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              child: const Text('Revolution is coming...'),
+              color: Colors.teal[500],
+            ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              child: const Text('Revolution, they...'),
+              color: Colors.teal[600],
+            ),
+          ],
+        ));
   }
 }
 
@@ -111,36 +127,68 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-// class Picker extends MenuTab {}
+class MenuTab extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _MenuTabState();
+}
 
-class MenuTab extends StatelessWidget {
-  late int selectedValue = 7;
+class _MenuTabState extends State<MenuTab> {
+  int selectedValue = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // color: Colors.black,
-      // padding: EdgeInsets.all(2.0),
-      // margin: EdgeInsets.all(2.0),
-      alignment: Alignment.topCenter,
-      child: CupertinoPicker(
-          itemExtent: 32.0,
-          onSelectedItemChanged: (value) {
-            setState() {
-              selectedValue = value;
-            }
-          },
-          scrollController: null,
-          children: const [
-            Text('1'),
-            Text('2'),
-            Text('3'),
-            Text('4'),
-            Text('5'),
-            Text('6'),
-            Text('7'),
-          ]),
+    return CupertinoPageScaffold(
+      navigationBar: const CupertinoNavigationBar(
+        backgroundColor: CupertinoColors.systemGrey,
+        middle: Text('4iOs'),
+      ),
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: Text('Select someone'),
+          ),
+          CupertinoButton(
+            child: Text('tap'),
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Picker1()));
+            },
+          )
+        ],
+      ),
     );
+  }
+}
+
+class Picker1 extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _PickerState();
+}
+
+class _PickerState extends State<Picker1> {
+  int selectedValue = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+        navigationBar: const CupertinoNavigationBar(
+          backgroundColor: CupertinoColors.systemGrey,
+          middle: Text('Piskner'),
+        ),
+        child: CupertinoPicker(
+          onSelectedItemChanged: (value) {
+            setState(() {
+              selectedValue = value;
+              print(selectedValue);
+            });
+          },
+          itemExtent: 32.0,
+          children: const [
+            Text('11'),
+            Text('12'),
+            Text('13'),
+          ],
+        ));
   }
 }
 
@@ -157,23 +205,21 @@ class AccountTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Container(
-      alignment: Alignment.bottomCenter,
-      width: 200,
-      height: 150,
-      color: Colors.black,
-      child: CupertinoButton(
-          alignment: Alignment.center,
-          // color: Colors.white,
+    return Column(
+      children: [
+        CupertinoButton(
+          borderRadius: BorderRadius.circular(14),
+          color: CupertinoColors.tertiaryLabel,
           child: Text(a),
           padding: EdgeInsets.all(2.0),
           onPressed: () {
             change;
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => Account()));
-          }),
-    ));
+          },
+        )
+      ],
+    );
   }
 }
 
