@@ -40,7 +40,6 @@ class _MyHomePageState extends State<MyHomePage>
     _myAnimation = Tween<Offset>(
       begin: Offset.zero,
       end: const Offset(10, 0),
-
     ).animate(CurvedAnimation(
       parent: _controller!,
       curve: Curves.easeIn,
@@ -54,16 +53,15 @@ class _MyHomePageState extends State<MyHomePage>
         title: Text("Flutter Animations"),
       ),
       body: Center(
-        child:
-        SlideTransition(
-          position: _myAnimation!,
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: FlutterLogo(size: 150.0),
-          ),
-        ),
+        child: Column(children: [
+          Text('data'),
+          Text('data2'),
+          SlideTransition(
+            position: _myAnimation!,
+            child: Text('data3'),
+            ),
+        ]),
       ),
-
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.play_arrow),
