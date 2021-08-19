@@ -33,17 +33,17 @@ class _MyHomePageState extends State<MyHomePage>
     // TODO: implement initState
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
       vsync: this,
     );
 
     _myAnimation = Tween<Offset>(
       begin: Offset.zero,
-      end: const Offset(1.5, 0.0),
+      end: const Offset(10, 0),
 
     ).animate(CurvedAnimation(
       parent: _controller!,
-      curve: Curves.elasticIn,
+      curve: Curves.easeIn,
     ));
   }
 
