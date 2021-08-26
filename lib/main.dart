@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Masha APP',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -39,8 +39,14 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+
+    createList();
+    if(taskList != []){
+      print('go');
+      loadTasks();
+    }
+
     _controller = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
@@ -53,6 +59,18 @@ class _MyHomePageState extends State<MyHomePage>
       parent: _controller!,
       curve: Curves.easeInOutBack,
     ));
+  }
+
+  void createList(){
+    for(var i = 0; i < 3; i++){
+      taskList.add(TaskCard.construct(isDone: false, isArchived: false, title: 'title is $i', id: i));
+    }
+  }
+
+  void loadTasks(){
+    taskList.forEach((element) {
+      _key.currentState?.insertItem(element.id);
+    });
   }
 
   void _onChanged(int index) {
